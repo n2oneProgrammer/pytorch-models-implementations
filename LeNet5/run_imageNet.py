@@ -14,14 +14,14 @@ print(device)
 batch_size = 128
 n_epochs = 100
 learning_rate = 0.001
-train_dataset = torchvision.datasets.MNIST(root='../data/',
-                                           train=True,
-                                           transform=transforms.ToTensor(),
-                                           download=True)
+train_dataset = torchvision.datasets.CIFAR10(root='../data/',
+                                             train=True,
+                                             transform=transforms.ToTensor(),
+                                             download=True)
 
-test_dataset = torchvision.datasets.MNIST(root='../data/',
-                                          train=False,
-                                          transform=transforms.ToTensor())
+test_dataset = torchvision.datasets.CIFAR10(root='../data/',
+                                            train=False,
+                                            transform=transforms.ToTensor())
 
 # Data loader
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
@@ -65,7 +65,7 @@ def show_predictions_grid(path_save, model, test_loader, class_names):
 
 def train(name: str):
     print(name, "Training...")
-    model = LeNet5(10,in_channel=1, width=30, height=30)
+    model = LeNet5(10, in_channel=3, width=32, height=32)
     model = model.to(device)
 
     criterion = torch.nn.CrossEntropyLoss().to(device)
@@ -137,4 +137,4 @@ def train_runner(p):
 
 
 if __name__ == '__main__':
-    train_runner("LeNet5")
+    train_runner("ImageNet")
