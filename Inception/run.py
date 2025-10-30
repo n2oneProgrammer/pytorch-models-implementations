@@ -6,7 +6,7 @@ import torchvision
 from torchvision import transforms
 from matplotlib import pyplot as plt
 
-from AlexNet.model import AlexNet
+from Inception.model import Inception
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 torch.cuda.empty_cache()
@@ -190,7 +190,7 @@ def show_predictions_grid(path_save, model, test_loader, class_names):
 
 def train(name: str):
     print(name, "Training...")
-    model = AlexNet(102, in_channel=3, width=224, height=224)
+    model = Inception(102, in_channel=3)
     model = model.to(device)
 
     criterion = torch.nn.CrossEntropyLoss().to(device)
@@ -270,4 +270,4 @@ def train_runner(p):
 
 
 if __name__ == '__main__':
-    train_runner("AlexNet")
+    train_runner("Inception")
